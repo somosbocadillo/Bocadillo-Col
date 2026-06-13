@@ -47,17 +47,17 @@ function FloatingIngredient({
     meshRef.current.position.y = THREE.MathUtils.lerp(meshRef.current.position.y, targetY, 0.08);
     meshRef.current.position.z = THREE.MathUtils.lerp(meshRef.current.position.z, targetZ, 0.08);
 
-    // Slowly rotate over time, with extra tilt added by mouse coordinates
-    meshRef.current.rotation.x = THREE.MathUtils.lerp(
-      meshRef.current.rotation.x, 
-      (t * 0.15) + (mouseY * 0.3), 
-      0.08
-    );
-    meshRef.current.rotation.y = THREE.MathUtils.lerp(
-      meshRef.current.rotation.y, 
-      (t * 0.2) + (mouseX * 0.3), 
-      0.08
-    );
+    // Base floating rotation (subtle oscillation)
+    const floatRotX = Math.sin(t + randomOffset.current.x) * 0.08;
+    const floatRotY = Math.cos(t + randomOffset.current.y) * 0.08;
+
+    // Target rotation: limit the rotation to prevent thin edges from showing
+    const targetRotX = floatRotX + (mouseY * 0.25);
+    const targetRotY = floatRotY + (mouseX * 0.25);
+
+    meshRef.current.rotation.x = THREE.MathUtils.lerp(meshRef.current.rotation.x, targetRotX, 0.08);
+    meshRef.current.rotation.y = THREE.MathUtils.lerp(meshRef.current.rotation.y, targetRotY, 0.08);
+
   });
 
   // Render different geometries based on ingredient type

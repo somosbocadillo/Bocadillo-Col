@@ -35,8 +35,7 @@ export default function Home() {
             <div className="hero-content-wrapper">
               <span className="hero-welcome-tag script-font">Bienvenidos a</span>
               <h1 className="hero-title">
-                Bocadillo 
-                <span>Premium</span>
+                Bocadillo
               </h1>
               <p className="hero-description">
                 Pensaste en dulce. Terminaste antojado de las mejores hamburguesas y choriperros artesanales de Palmira.

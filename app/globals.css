@@ -35,10 +35,10 @@ body {
   overflow-x: hidden;
 }
 
-/* Estilos de Tipografías */
+/* Estilos de Tipografías (Folkies es naturalmente gruesa, se usa normal para evitar faux-bold) */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-folkies), sans-serif;
-  font-weight: 900;
+  font-weight: normal;
   line-height: 1.1;
   letter-spacing: -0.02em;
 }
@@ -161,7 +161,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-folkies), sans-serif;
   font-size: 10px;
   color: var(--primary-green);
-  font-weight: 900;
+  font-weight: normal;
 }
 
 /* NAVBAR STYLES */
@@ -249,7 +249,7 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--text-light);
   font-family: var(--font-folkies), sans-serif;
   font-size: 14px;
-  font-weight: 900;
+  font-weight: normal;
   border-radius: 6px;
   border: 2px solid var(--accent-orange);
   transition: var(--transition-smooth);
@@ -366,7 +366,7 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--text-light);
   font-family: var(--font-folkies), sans-serif;
   font-size: 14px;
-  font-weight: 900;
+  font-weight: normal;
   border-radius: 6px;
   text-transform: uppercase;
 }
@@ -432,7 +432,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .hero-cta-secondary {
   font-family: var(--font-folkies), sans-serif;
-  font-weight: 900;
+  font-weight: normal;
   color: var(--primary-green);
   font-size: 15px;
   letter-spacing: 0.05em;
@@ -709,7 +709,7 @@ h1, h2, h3, h4, h5, h6 {
 .card-price {
   font-family: var(--font-folkies), sans-serif;
   font-size: 22px;
-  font-weight: 900;
+  font-weight: normal;
   color: var(--accent-orange);
 }
 
@@ -719,7 +719,7 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--text-light);
   font-family: var(--font-folkies), sans-serif;
   font-size: 13px;
-  font-weight: 900;
+  font-weight: normal;
   border: 2px solid var(--primary-green);
   border-radius: 6px;
   transition: var(--transition-smooth);
@@ -783,7 +783,7 @@ h1, h2, h3, h4, h5, h6 {
 .item-price {
   color: var(--accent-orange);
   font-family: var(--font-folkies), sans-serif;
-  font-weight: 900;
+  font-weight: normal;
   font-size: 18px;
 }
 
@@ -933,6 +933,98 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--primary-green);
   font-size: 17px;
   margin-bottom: 4px;
+}
+
+/* FOOTER STYLES */
+.brand-footer {
+  background-color: var(--dark-green);
+  color: var(--text-light);
+  padding-top: 0;
+}
+
+.footer-container {
+  padding: 60px 24px 30px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1.5fr 1fr;
+  gap: 48px;
+  margin-bottom: 48px;
+}
+
+.footer-brand-info .footer-logo {
+  font-size: 52px;
+  color: var(--cream-bg);
+  margin-bottom: 16px;
+}
+
+.footer-slogan {
+  font-size: 16px;
+  line-height: 1.6;
+  opacity: 0.85;
+  max-width: 380px;
+}
+
+.footer-grid h3 {
+  font-size: 18px;
+  color: var(--accent-orange);
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.footer-phone {
+  font-size: 28px;
+  font-family: var(--font-folkies), sans-serif;
+  font-weight: normal;
+  margin-bottom: 12px;
+}
+
+.footer-phone a {
+  color: var(--accent-orange);
+  transition: var(--transition-smooth);
+}
+
+.footer-phone a:hover {
+  color: var(--cream-bg);
+}
+
+.footer-address {
+  font-size: 15px;
+  opacity: 0.9;
+  line-height: 1.5;
+}
+
+.instagram-link {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--cream-bg);
+  display: inline-block;
+  padding: 6px 12px;
+  border: 1px dashed var(--cream-bg);
+  border-radius: 4px;
+  transition: var(--transition-smooth);
+}
+
+.instagram-link:hover {
+  background-color: var(--cream-bg);
+  color: var(--dark-green);
+  border-style: solid;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(238, 227, 208, 0.1);
+  padding-top: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  opacity: 0.65;
+}
+
+.footer-author {
+  font-style: italic;
 }
 
 /* RESPONSIVE DESIGN - MEDIA QUERIES */
