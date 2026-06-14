@@ -45,7 +45,16 @@ export default function Footer() {
 
         <div className="footer-bottom">
           <p>© {new Date().getFullYear()} Bocadillo. Todos los derechos reservados.</p>
-          <p className="footer-author">Diseño y desarrollo con sabor premium 🍔</p>
+          <p className="footer-author">
+            Desarrollado por{" "}
+            <a 
+              href="https://scibaru-ai.vercel.app" 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              Scibaru AI
+            </a>
+          </p>
         </div>
       </div>
     </footer>
