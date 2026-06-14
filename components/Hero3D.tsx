@@ -1,7 +1,7 @@
 "use client";
 
 import { Canvas, useFrame } from "@react-three/fiber";
-import { useRef } from "react";
+import { useRef, useMemo } from "react";
 import * as THREE from "three";
 
 // Floating Ingredient Component
@@ -18,7 +18,7 @@ function FloatingIngredient({
   color: string;
   speedMultiplier?: number;
 }) {
-  const meshRef = useRef<THREE.Mesh>(null);
+  const meshRef = useRef<THREE.Object3D>(null);
   
   // Random starting offsets for phase-shifting
   const randomOffset = useRef({
@@ -26,6 +26,24 @@ function FloatingIngredient({
     y: Math.random() * 100,
     z: Math.random() * 100,
   });
+
+  // Generate random sesame seed positions on the upper hemisphere
+  const sesameSeeds = useMemo(() => {
+    const seeds = [];
+    // Deterministic pseudo-random seed generator
+    let seed = 42;
+    function random() {
+      const x = Math.sin(seed++) * 10000;
+      return x - Math.floor(x);
+    }
+    for (let i = 0; i < 35; i++) {
+      const theta = Math.acos(1 - random() * 0.6); // keep seeds on the upper 60% of the dome
+      const phi = random() * Math.PI * 2;
+      const rot = random() * Math.PI * 2;
+      seeds.push({ theta, phi, rot });
+    }
+    return seeds;
+  }, []);
 
   useFrame((state) => {
     if (!meshRef.current) return;
@@ -63,10 +81,31 @@ function FloatingIngredient({
   // Render different geometries based on ingredient type
   if (type === "bun-top") {
     return (
-      <mesh ref={meshRef} position={position} scale={scale} castShadow receiveShadow>
-        <sphereGeometry args={[1, 32, 16, 0, Math.PI * 2, 0, Math.PI / 2]} />
-        <meshStandardMaterial color={color} roughness={0.4} metalness={0.1} />
-      </mesh>
+      <group ref={meshRef} position={position} scale={scale}>
+        {/* Outer Dome hemisphere */}
+        <mesh castShadow receiveShadow>
+          <sphereGeometry args={[1, 32, 16, 0, Math.PI * 2, 0, Math.PI / 2]} />
+          <meshStandardMaterial color={color} roughness={0.4} metalness={0.1} />
+        </mesh>
+        
+        {/* Flat Bottom Circle Cap - gives a realistic flat base (toasted color) */}
+        <mesh rotation={[Math.PI / 2, 0, 0]} receiveShadow>
+          <circleGeometry args={[1, 32]} />
+          <meshStandardMaterial color="#e2c59d" roughness={0.5} metalness={0.0} side={THREE.DoubleSide} />
+        </mesh>
+
+        {/* 3D Sesame Seeds scattered naturally across the top bun surface */}
+        {sesameSeeds.map((seed, idx) => (
+          <group key={idx} rotation={[0, seed.phi, 0]}>
+            <group rotation={[0, 0, seed.theta]}>
+              <mesh position={[0, 1.01, 0]} rotation={[0, seed.rot, 0]} castShadow>
+                <boxGeometry args={[0.022, 0.012, 0.055]} />
+                <meshStandardMaterial color="#fdf7ea" roughness={0.6} metalness={0.0} />
+              </mesh>
+            </group>
+          </group>
+        ))}
+      </group>
     );
   }
 
