@@ -114,7 +114,7 @@ export default function Hero3D() {
   return (
     <div className="hero-3d-canvas-container">
       <Canvas
-        camera={{ position: [0, 0, 7.5], fov: 45 }}
+        camera={{ position: [0, -0.3, 8.8], fov: 45 }}
         shadows
         gl={{ antialias: true }}
       >
